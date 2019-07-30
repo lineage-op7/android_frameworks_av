@@ -81,13 +81,18 @@ LOCAL_SHARED_LIBRARIES:= \
     android.hardware.camera.device@1.0 \
     android.hardware.camera.device@3.2 \
     android.hardware.camera.device@3.3 \
-    android.hardware.camera.device@3.4 \
-    vendor.lineage.camera.motor@1.0
+    android.hardware.camera.device@3.4
 
 ifeq ($(TARGET_USES_QTI_CAMERA_DEVICE), true)
 LOCAL_CFLAGS += -DQTI_CAMERA_DEVICE
 LOCAL_SHARED_LIBRARIES += \
     vendor.qti.hardware.camera.device@1.0
+endif
+
+ifeq ($(TARGET_MOTORIZED_CAMERA), true)
+LOCAL_CFLAGS += -DTARGET_MOTORIZED_CAMERA
+LOCAL_SHARED_LIBRARIES += \
+    vendor.lineage.camera.motor@1.0
 endif
 
 ifeq ($(TARGET_CAMERA_NEEDS_CLIENT_INFO),true)
